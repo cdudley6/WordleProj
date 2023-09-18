@@ -18,17 +18,20 @@ def wordle():
         line = str(s).lower()
 
         #get a random word from the word dictionary
-        randomword = random.choice(FIVE_LETTER_WORDS)
-        hidden = str(randomword)
+        # randomword = random.choice(FIVE_LETTER_WORDS)
+       
         if line in FIVE_LETTER_WORDS:
-            gw.show_message("Good Job.")
+            #gw.show_message("Good Job.")
+            gw.show_message(hidden)
             #this is where we implement the colors and comparison to the hidden random word
-            # for (iCount) in range(N_COLS):
-            #     solution = hidden[iCount]
-            #     user = line[iCount]
-            #     #if the user-generated letter is the same as the letter in the solution turn the key GREEN
-            #     if user == solution:
-            #         gw.set_key_color(user, CORRECT_COLOR)
+            for (iCount) in range(N_COLS):
+                solution = hidden[iCount]
+                user = line[iCount]
+                #if the user-generated letter is the same as the letter in the solution turn the key GREEN
+                if user == solution:
+                    gw.set_square_color(0,iCount, CORRECT_COLOR)
+                if user in hidden:
+                    gw.set_square_color(0, iCount, PRESENT_COLOR)
 
 
 
@@ -40,8 +43,8 @@ def wordle():
 
     gw = WordleGWindow()
     
-    
-    
+    randomword = random.choice(FIVE_LETTER_WORDS)
+    hidden = str(randomword)
 
     # loop to get each letter from the random word to the letter boxes.
     # for (iCount) in range(N_COLS):
